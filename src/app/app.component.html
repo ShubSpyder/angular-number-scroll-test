@@ -1,10 +1,12 @@
 <div class="container">
+  <div>
 
-  <app-number-scroll></app-number-scroll>
+    <app-number-scroll [num]="num"></app-number-scroll>
+  </div>
 
   <div class="container-bottom">
-    <button>Increase</button>
-    <button>Random</button>
-    <button>Decrease</button>
+    <button class="positive" (click)="num = num + 1">Increase</button>
+    <button class="neutral" (click)="generateRandom()">Random</button>
+    <button class="negative" (click)="num = num -1">Decrease</button>
   </div>
 </div>
