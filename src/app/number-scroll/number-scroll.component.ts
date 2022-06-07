@@ -14,7 +14,7 @@ import {
 export class NumberScrollComponent implements OnChanges {
   @Input() num: number = 0;
 
-  @Input() numArr: Array<string> = []
+  numArr: Array<string> = []
 
   constructor() { }
 

@@ -1,4 +1,5 @@
-
 <div class="number-scroll-view">
-    <app-number-column></app-number-column>
+    <ng-container *ngFor="let digit of numArr">
+        <app-number-column [numString]="digit"></app-number-column>
+    </ng-container>
 </div>
