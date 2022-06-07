@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'number-scroll-demo';
-  num: number = 4;
+  num: number = 5;
 
   generateRandom() {
     this.num = Math.trunc(Math.random() * (10000 - 100) + 100);

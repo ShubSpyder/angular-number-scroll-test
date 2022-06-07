@@ -1,5 +1,5 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import {animate, state, style, transition, trigger} from '@angular/animations';
+import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild, ElementRef, Renderer2 } from '@angular/core';
+import { animate, state, style, transition, trigger } from "@angular/animations";
 
 
 @Component({
@@ -7,39 +7,73 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
   templateUrl: './number-column.component.html',
   styleUrls: ['./number-column.component.scss'],
   animations: [
-    trigger('animateNumber', [
-      state('two', style({transform: 'translateY(20%)'})),
-      state('four', style({transform: 'translateY(40%)'})),
-      transition('* <=> *', animate('225ms cubic-bezier(0.37, 0.37, 0.11, 1.25)')),
+    trigger("slideNumber", [
+      state("zero", style({ transform: 'translateY(0%)' })),
+      state("one", style({ transform: 'translateY(10%)' })),
+      state("two", style({ transform: 'translateY(20%)' })),
+      state("three", style({ transform: 'translateY(30%)' })),
+      state("four", style({ transform: 'translateY(40%)' })),
+      state("five", style({ transform: 'translateY(50%)' })),
+      transition(
+        "void => zero",
+        animate("400ms cubic-bezier(0.4, 0.0, 0.2, 1)", style({ transform: 'translateY(0%)' }))
+      ),
+      transition(
+        "void => one",
+        animate("400ms cubic-bezier(0.4, 0.0, 0.2, 1)", style({ transform: 'translateY(10%)' }))
+      ),
+      transition(
+        "void => two",
+        animate("400ms cubic-bezier(0.4, 0.0, 0.2, 1)", style({ transform: 'translateY(20%)' }))
+      ),
+      transition(
+        "void => three",
+        animate("400ms cubic-bezier(0.4, 0.0, 0.2, 1)", style({ transform: 'translateY(30%)' }))
+      ),
+      transition(
+        "void => four",
+        animate("400ms cubic-bezier(0.4, 0.0, 0.2, 1)", style({ transform: 'translateY(40%)' }))
+      ),
+      transition(
+        "void => five",
+        animate("400ms cubic-bezier(0.4, 0.0, 0.2, 1)", style({ transform: 'translateY(50%)' }))
+      ),
     ]),
   ],
 })
-export class NumberColumnComponent implements OnChanges {
 
-  constructor() { }
 
-  @Input() numString: string = '8';
+export class NumberColumnComponent implements OnInit, OnChanges {
+
+  constructor(private renderer: Renderer2) { }
+
+  @Input() numString: string | undefined;
 
   numberPercent: number = 0;
+  previousVal: number = 0;
 
-  currentPosition :string = 'two';
+  currentPosition: string = 'two';
 
-  ngOnChanges(changes: SimpleChanges): void {
-    const number = parseInt(this.numString);
-    // setTimeout(()=>{
-    //   this.numberPercent = number * 10;
-    // },200)
+  @ViewChild('numberColumn', { static: false }) numColumn: ElementRef | undefined;
 
-    this.numberPercent = number * 10;
+  ngOnInit(): void {
 
-    // this.toggle();
   }
 
-  toggle(){
+  ngOnChanges(changes: SimpleChanges): void {
+    setTimeout(() => {
+      this.numberPercent = parseInt(changes['numString'].currentValue) * 10
+    })
+
+    // numcol[0].style.transform = `translateY(${this.previousVal + val}%)`;
+
+  }
+
+  toggle() {
     // this.currentPosition = 'two';
   }
 
 
-  
+
 
 }

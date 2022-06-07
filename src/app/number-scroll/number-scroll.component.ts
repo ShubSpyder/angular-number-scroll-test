@@ -15,6 +15,8 @@ export class NumberScrollComponent implements OnChanges {
   @Input() num: number = 0;
 
   numArr: Array<string> = []
+  
+  numberPercent: number | undefined;
 
   constructor() { }
 
@@ -24,5 +26,9 @@ export class NumberScrollComponent implements OnChanges {
 
     this.numArr = (changes["num"].currentValue).toString().split('');
 
+  }
+
+  trackNumber(index:any, digit:any){
+    return digit;
   }
 }
