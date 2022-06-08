@@ -63,17 +63,6 @@ export class NumberColumnComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     setTimeout(() => {
       this.numberPercent = parseInt(changes['numString'].currentValue) * 10
-    })
-
-    // numcol[0].style.transform = `translateY(${this.previousVal + val}%)`;
-
+    });
   }
-
-  toggle() {
-    // this.currentPosition = 'two';
-  }
-
-
-
-
 }

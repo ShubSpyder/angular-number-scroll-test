@@ -1,32 +1,28 @@
 <div class="number-scroll-view">
+    <div class="number-scroll-digit" *ngIf="isNegative">-</div>
     <ng-container *ngIf="numArr.length > 1">
         <app-number-column *ngFor="let digit of numArr; trackBy: trackNumber" [numString]="digit"></app-number-column>
     </ng-container>
-
-    <!-- <app-number-column *ngFor="let digit of numArr" [numString]="digit"></app-number-column> -->
 
     <ng-container *ngIf="numArr.length == 1">
         <app-number-column [numString]="numArr[0]"></app-number-column>
     </ng-container>
 
-   
-    <!-- <app-number-column [numString]="numArr[1]"></app-number-column> -->
+    <ng-container *ngIf="showDecimal">
 
-    <!-- <div class="number-scroll-view">
-        <div class="number-scroll-column-container">
-            <div class="number-scroll-column " [ngStyle]="{'transform': 'translateY('+numberPercent+'%)'}">
-                <div class="number-scroll-digit"><span>9</span></div>
-                <div class="number-scroll-digit"><span>8</span></div>
-                <div class="number-scroll-digit"><span>7</span></div>
-                <div class="number-scroll-digit"><span>6</span></div>
-                <div class="number-scroll-digit"><span>5</span></div>
-                <div class="number-scroll-digit"><span>4</span></div>
-                <div class="number-scroll-digit"><span>3</span></div>
-                <div class="number-scroll-digit"><span>2</span></div>
-                <div class="number-scroll-digit"><span>1</span></div>
-                <div class="number-scroll-digit"><span>0</span></div>
-            </div><span class="number-placeholder">0</span>
-        </div>
-    </div> -->
+        <div class="number-scroll-digit" *ngIf="showDecimal">.</div>
+        <ng-container *ngIf="decimalArr.length > 1">
+            <app-number-column *ngFor="let digit of decimalArr; trackBy: trackNumber" [numString]="digit">
+            </app-number-column>
+        </ng-container>
+
+        <ng-container *ngIf="decimalArr.length == 1">
+            <app-number-column [numString]="decimalArr[0]"></app-number-column>
+        </ng-container>
+
+    </ng-container>
+
+
+
 
 </div>

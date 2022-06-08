@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,9 +7,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'number-scroll-demo';
-  num: number = 5;
+  num: number = -25;
+
+
 
   generateRandom() {
-    this.num = Math.trunc(Math.random() * (10000 - 100) + 100);
+    this.num = Math.random() * (10000 - 100) + 100;
   }
 }
